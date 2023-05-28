@@ -67,9 +67,9 @@ jobs:
         ssh deploy_ec2 "git clone https://github.com/farrelarrizal/smoke_detector.git temp/"
         ssh deploy_ec2 "rsync -a ./temp/ ./smoke_detector/"
         ssh deploy_ec2 "rm -rf temp/"
-        ssh deploy_ec2 "cd ml_process_demo/ && git lfs pull"
-        ssh deploy_ec2 "cd ml_process_demo/ && sudo docker-compose rm -sf api && sudo docker-compose rm -sf streamlit"
-        ssh deploy_ec2 "cd ml_process_demo/ || sudo docker rmi cbagusjk/ml_process_api -f || sudo docker rmi cbagusjk/ml_process_streamlit -f"
-        ssh deploy_ec2 "cd ml_process_demo/ && sudo docker-compose pull && sudo docker-compose up -d"
+        ssh deploy_ec2 "cd smoke_detector/ && git lfs pull"
+        ssh deploy_ec2 "cd smoke_detector/ && sudo docker-compose rm -sf api && sudo docker-compose rm -sf streamlit"
+        ssh deploy_ec2 "cd smoke_detector/ || sudo docker rmi cbagusjk/ml_process_api -f || sudo docker rmi cbagusjk/ml_process_streamlit -f"
+        ssh deploy_ec2 "cd smoke_detector/ && sudo docker-compose pull && sudo docker-compose up -d"
         
 
