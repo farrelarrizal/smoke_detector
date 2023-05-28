@@ -32,10 +32,10 @@ jobs:
 #         username: ${{ secrets.DOCKER_HUB_USER }}
 #         password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-#     - name: Docker Compose Build and Push
-#       run: |
-#         docker compose build --no-cache
-#         docker compose push
+    - name: Docker Compose Build and Push
+      run: |
+        docker compose build --no-cache
+        docker compose push
   
   docker-pull-ec2:
     needs: docker-compose-build
@@ -63,9 +63,10 @@ jobs:
         
     - name: Deploy to EC2
       run: |
+        ssh deploy_ec2 "mkdir smoke_detector/"
         ssh deploy_ec2 "mkdir temp/"
         ssh deploy_ec2 "git clone https://github.com/farrelarrizal/smoke_detector.git temp/"
-        ssh deploy_ec2 "rsync -a ./temp/ ./ml_process_demo/"
+        ssh deploy_ec2 "rsync -a ./temp/ ./smoke_detector/"
         ssh deploy_ec2 "rm -rf temp/"
         ssh deploy_ec2 "cd ml_process_demo/ && git lfs pull"
         ssh deploy_ec2 "cd ml_process_demo/ && sudo docker compose rm -sf api && sudo docker compose rm -sf streamlit"
