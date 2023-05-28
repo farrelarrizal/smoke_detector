@@ -7,7 +7,7 @@ services:
     depends_on:
       - api
     ports:
-      - 8501:8501
+      - 8502:8502
     volumes:
       - ./:/home/
   api:
@@ -15,6 +15,6 @@ services:
     image: cbagusjk/ml_process_api
     container_name: api_backend
     ports:
-      - 8080:8080
+      - 8081:8081
     volumes:
       - ./:/home/
