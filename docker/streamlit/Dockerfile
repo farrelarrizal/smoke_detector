@@ -9,5 +9,5 @@ apt-get clean -y && \
 pip install --upgrade pip && \
 pip install wheel && \
 pip install -r requirements.txt
-EXPOSE 8501
+EXPOSE 8502
 CMD ["streamlit", "run", "src/streamlit.py"]
